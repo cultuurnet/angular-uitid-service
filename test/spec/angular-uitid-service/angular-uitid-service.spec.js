@@ -123,4 +123,12 @@ describe('Service: uitid', function () {
 
     expect($window.location.href).toEqual(apiUrl + 'culturefeed/oauth/connect?destination=' + destination);
   });
+
+  it('adds skipConfirmation if requested', function () {
+    var destination = 'destination';
+
+    uitid.login(destination, true);
+
+    expect($window.location.href).toEqual(apiUrl + 'culturefeed/oauth/connect?destination=' + destination + '&skipConfirmation=true');
+  });
 });

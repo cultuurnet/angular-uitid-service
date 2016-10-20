@@ -71,9 +71,14 @@ function uitidService($q, $window, $http, appConfig) {
   /**
    * Login by redirecting to UiTiD
    */
-  uitId.login = function(destination) {
+  uitId.login = function(destination, skipConfirmation) {
     // redirect to login page
     authUrl += '?destination=' + destination;
+
+    if (skipConfirmation) {
+      authUrl += '&skipConfirmation=true';
+    }
+
     $window.location.href = authUrl;
   };
 
