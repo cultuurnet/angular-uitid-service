@@ -66,7 +66,9 @@ describe('Service: uitid', function () {
       function() {
         throw new Error('uitid.getUser() should not have resolved its promise.');
       }
-    );
+    ).catch(function () {
+      
+    });
 
     // Deliver the 403 response.
     $httpBackend.flush();
