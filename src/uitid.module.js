@@ -33,14 +33,14 @@ function uitidService($q, $window, $http, appConfig) {
     } else {
       $http
         .get(apiUrl + '/user')
-        .success(angular.bind(uitId, function (userData) {
-          uitId.user = userData;
-          uitId.user.displayName = uitId.user.givenName || uitId.user.nick;
+        .then(angular.bind(uitId, function (response) {
+            uitId.user = response.data;
+            uitId.user.displayName = uitId.user.givenName || uitId.user.nick;
 
-          deferredUser.resolve(userData);
+            deferredUser.resolve(response.data);
         }))
-        .error(function () {
-          deferredUser.reject();
+        .catch(function () {
+            deferredUser.reject();
         });
     }
 
